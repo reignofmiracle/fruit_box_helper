@@ -55,5 +55,7 @@ class Helper:
         for item in hints:
             self.canvas.create_rectangle(*getRectange(*item), outline="green", width=2)
 
+        print(board.matrix)
+
     def close_command(self):
         pass

@@ -1,8 +1,10 @@
 from dataclasses import dataclass
 from typing import List
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pyautogui
+import pandas as pd
 
 
 @dataclass
@@ -26,16 +28,24 @@ class BoardReader:
         numbers = []
         row = set()
         col = set()
+        counts = np.zeros(9)
         for i in range(9):
             try:
-                for pos in pyautogui.locateAllOnScreen(
-                    f"numbers/{i+1}.png", grayscale=True
-                ):
+                locations = list(
+                    pyautogui.locateAllOnScreen(f"numbers/{i+1}.png", grayscale=True)
+                )
+                for pos in locations:
                     row.add(pos.top)
                     col.add(pos.left)
                     numbers.append([pos, i + 1])
+
+                counts[i] = len(locations)
             except:
                 return None
+            
+        plt.clf()
+        plt.bar(np.arange(1, 10), counts)        
+        plt.show(block=False)
 
         row = list(row)
         row.sort()
