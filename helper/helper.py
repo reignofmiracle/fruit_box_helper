@@ -49,11 +49,12 @@ class Helper:
         self.window.update()
 
         agent = AgentGreedy()
-        hints = agent.update(board.matrix)
+        hints = agent.analyze(board.matrix)
 
         self.canvas.delete("all")
+
         for item in hints:
-            self.canvas.create_rectangle(*getRectange(*item), outline="green", width=2)
+            self.canvas.create_rectangle(*getRectange(*item), outline="red", width=3)
 
         print(board.matrix)
 

@@ -1,10 +1,8 @@
 from dataclasses import dataclass
 from typing import List
 
-import matplotlib.pyplot as plt
 import numpy as np
 import pyautogui
-import pandas as pd
 
 
 @dataclass
@@ -42,10 +40,6 @@ class BoardReader:
                 counts[i] = len(locations)
             except:
                 return None
-            
-        plt.clf()
-        plt.bar(np.arange(1, 10), counts)        
-        plt.show(block=False)
 
         row = list(row)
         row.sort()
@@ -53,7 +47,7 @@ class BoardReader:
         col = list(col)
         col.sort()
 
-        matrix = np.zeros((len(row), len(col)))
+        matrix = np.zeros((len(row), len(col)), np.int32)
         for number in numbers:
             r = row.index(number[0].top)
             c = col.index(number[0].left)
