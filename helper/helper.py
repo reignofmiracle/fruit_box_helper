@@ -30,6 +30,8 @@ class Helper:
         if board is None:
             return
 
+        print(board.matrix)
+
         left = board.offset[0] - 70
         top = board.offset[1] - 90
         width = board.matrix.shape[1] * board.x_gap + 130
@@ -55,8 +57,6 @@ class Helper:
 
         for item in hints:
             self.canvas.create_rectangle(*getRectange(*item), outline="red", width=3)
-
-        print(board.matrix)
 
     def close_command(self):
         pass
