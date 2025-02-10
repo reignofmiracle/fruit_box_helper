@@ -40,11 +40,13 @@ class Helper:
         def getRectange(x1, y1, x2, y2):
             padx = 44
             pady = 39
+            marginx = 5
+            marginy = 5
             return (
-                x1 * board.x_gap + padx,
-                y1 * board.y_gap + pady,
-                (x2 + 1) * board.x_gap + padx,
-                (y2 + 1) * board.y_gap + pady,
+                x1 * board.x_gap + padx + marginx,
+                y1 * board.y_gap + pady + marginy,
+                (x2 + 1) * board.x_gap + padx - marginx,
+                (y2 + 1) * board.y_gap + pady - marginy,
             )
 
         self.window.geometry(f"{width}x{height}+{left}+{top}")

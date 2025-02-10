@@ -8,7 +8,16 @@ from helper.agent_core import AgentCore
 class AgentGreedy:
     def analyze(self, matrix: np.ndarray):
         r = AgentCore.analyze(matrix)
-        return self.sort(matrix, r)
+
+        hints = self.sort(matrix, r)        
+        while True:
+            next = self.sort(matrix, hints)
+            if next == hints:
+                break
+
+            hints = next
+
+        return hints
 
     def sort(self, matrix: np.ndarray, hints: List[List[int]]) -> List[List[int]]:
         head = set()
