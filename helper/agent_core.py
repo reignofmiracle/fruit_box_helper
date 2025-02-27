@@ -62,3 +62,7 @@ class AgentCore:
             for n in matrix[rect[1] : rect[3] + 1, rect[0] : rect[2] + 1].flatten()
             if n > 0
         ]
+
+    @staticmethod
+    def set_zeros(matrix: np.ndarray, rect: List[int]):
+        matrix[rect[1] : rect[3] + 1, rect[0] : rect[2] + 1] = 0

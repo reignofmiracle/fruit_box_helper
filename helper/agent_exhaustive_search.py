@@ -37,15 +37,21 @@ class AgentExhaustiveSearch:
         scores[0].add(score_0)
 
         for i in range(0, max_score):
+            print(f"{i} -> {len(scores[i].boards)}")
+
             for b in scores[i].boards:
-                self.process(b, scores)
+                self.process(i, b, scores)
 
-            if len(scores[i]) == 0:
-                break
+    def process(self, score: int, board: Board, scores: List[Boards]):
+        for m in board.moves:
+            numbers = AgentCore.get_numbers(board.matrix, m)
 
-            if i == 2:
-                break
+            matrix = board.matrix.copy()
+            AgentCore.set_zeros(matrix, m)
 
-    def process(self, board: Board, scores: List[Boards]):
+            moves = AgentCore.analyze(board.matrix)
+            next_board = Board(matrix, moves)
 
-        pass
+            boards = scores[score + len(numbers)]
+            if not boards.contains(next_board):
+                boards.add(next_board)
