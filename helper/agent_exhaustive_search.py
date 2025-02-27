@@ -16,20 +16,36 @@ class Boards:
         self.boards = []
 
     def add(self, board: Board):
-        pass
+        self.boards.append(board)
 
     def contains(self, board: Board):
-        return True
+        for item in self.boards:
+            if np.array_equal(item.matrix, board.matrix):
+                return True
+
+        return False
 
 
 class AgentExhaustiveSearch:
     def search(self, matrix: np.ndarray):
-        cases = [List() for i in range(matrix.shape[0] * matrix.shape[1])]
-        
+        max_score = matrix.shape[0] * matrix.shape[1]
+        scores = [Boards() for i in range(max_score)]
+
         moves = AgentCore.analyze(matrix)
+        score_0 = Board(matrix, moves)
 
-        first = Board(matrix, moves)
-        
+        scores[0].add(score_0)
 
-    def move(self, board: Board, cases: List[List[Board]]):
+        for i in range(0, max_score):
+            for b in scores[i].boards:
+                self.process(b, scores)
+
+            if len(scores[i]) == 0:
+                break
+
+            if i == 2:
+                break
+
+    def process(self, board: Board, scores: List[Boards]):
+
         pass
