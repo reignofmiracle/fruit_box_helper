@@ -13,17 +13,13 @@ class Board:
 
 class Boards:
     def __init__(self):
-        self.boards = []
+        self.boards = set()
 
     def add(self, board: Board):
-        self.boards.append(board)
+        self.boards.add(board)
 
     def contains(self, board: Board):
-        for item in self.boards:
-            if np.array_equal(item.matrix, board.matrix):
-                return True
-
-        return False
+        return board in self.boards
 
 
 class AgentExhaustiveSearch:
@@ -49,7 +45,7 @@ class AgentExhaustiveSearch:
             matrix = board.matrix.copy()
             AgentCore.set_zeros(matrix, m)
 
-            moves = AgentCore.analyze(board.matrix)
+            moves = AgentCore.analyze(matrix)
             next_board = Board(matrix, moves)
 
             boards = scores[score + len(numbers)]
