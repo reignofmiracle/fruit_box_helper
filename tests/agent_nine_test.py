@@ -6,13 +6,14 @@ import unittest
 
 import numpy as np
 
+from helper.agent_nine import AgentNine
 from helper.agent_exhaustive_search import AgentExhaustiveSearch
 
 
-class AgentExhaustiveSearchTest(unittest.TestCase):
+class AgentNineTest(unittest.TestCase):
     # @unittest.skip("wait")
-    def test_r(self):
-        sample = np.array(
+    def test_process(self):
+        matrix = np.array(
             [
                 [4, 2, 2, 8, 7, 1, 4, 2, 2, 1, 6, 9, 7, 3, 9, 8, 5],
                 [1, 7, 1, 2, 7, 3, 7, 3, 4, 9, 6, 7, 1, 3, 4, 1, 4],
@@ -28,11 +29,21 @@ class AgentExhaustiveSearchTest(unittest.TestCase):
             np.int32,
         )
 
-        sample[(sample != 1) & (sample != 9)] = 0
-        print(sample)
+        matrix[(matrix != 1) & (matrix != 9)] = 0
 
         agent = AgentExhaustiveSearch()
-        agent.search(sample)
+        agent.search(matrix)
+
+        a = matrix.copy()
+        a[(a != 1) & (a != 9)] = 0
+        print(a)
+
+        b = matrix.copy()
+        b[(b != 2) & (b != 8)] = 0
+        print(b)
+
+        print(len(matrix[matrix == 1]))
+        print(len(matrix[matrix == 9]))
 
 
 if __name__ == "__main__":

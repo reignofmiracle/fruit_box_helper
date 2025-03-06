@@ -38,6 +38,8 @@ class AgentExhaustiveSearch:
             for b in scores[i].boards:
                 self.process(i, b, scores)
 
+        print("end")
+
     def process(self, score: int, board: Board, scores: List[Boards]):
         for m in board.moves:
             numbers = AgentCore.get_numbers(board.matrix, m)
