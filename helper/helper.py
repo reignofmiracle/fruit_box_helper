@@ -1,7 +1,7 @@
 import tkinter as tk
 from typing import List
 
-from helper.board import BoardReader
+from helper.canvas import CanvasReader
 from helper.agent_greedy import AgentGreedy
 
 
@@ -26,7 +26,7 @@ class Helper:
         self.window.mainloop()
 
     def update_command(self):
-        board = BoardReader.read()
+        board = CanvasReader.read()
         if board is None:
             return
 

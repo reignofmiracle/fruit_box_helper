@@ -6,8 +6,7 @@ import unittest
 
 import numpy as np
 
-from helper.agent_nine import AgentNine
-from helper.agent_exhaustive_search import AgentExhaustiveSearch
+from helper.agent_smart import AgentSmart
 
 
 class AgentNineTest(unittest.TestCase):
@@ -29,21 +28,8 @@ class AgentNineTest(unittest.TestCase):
             np.int32,
         )
 
-        matrix[(matrix != 1) & (matrix != 9)] = 0
-
-        agent = AgentExhaustiveSearch()
+        agent = AgentSmart()
         agent.search(matrix)
-
-        a = matrix.copy()
-        a[(a != 1) & (a != 9)] = 0
-        print(a)
-
-        b = matrix.copy()
-        b[(b != 2) & (b != 8)] = 0
-        print(b)
-
-        print(len(matrix[matrix == 1]))
-        print(len(matrix[matrix == 9]))
 
 
 if __name__ == "__main__":

@@ -6,7 +6,7 @@ import pyautogui
 
 
 @dataclass
-class Board:
+class Canvas:
     matrix: np.ndarray
     offset: List[int]
     x_gap: int
@@ -19,10 +19,10 @@ class Board:
         self.y_gap = y_gap
 
 
-class BoardReader:
+class CanvasReader:
 
     @staticmethod
-    def read() -> Board | None:
+    def read() -> Canvas | None:
         numbers = []
         row = set()
         col = set()
@@ -53,4 +53,4 @@ class BoardReader:
             c = col.index(number[0].left)
             matrix[r, c] = number[1]
 
-        return Board(matrix, [col[0], row[0]], col[1] - col[0], row[1] - row[0])
+        return Canvas(matrix, [col[0], row[0]], col[1] - col[0], row[1] - row[0])
